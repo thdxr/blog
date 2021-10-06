@@ -39,8 +39,7 @@ const Visualization: Component = (props) => {
 
 export const Metadata: MetadataType = {
   title: "How AWS Lambda Runs Your Code",
-  description:
-    "A breakdown of the surprisingly simple AWS Lambda Runtime API and bending it to your will",
+  description: "A breakdown of the surprisingly simple Lambda Runtime API",
   slug: "how-aws-lambda-runs-your-code",
   date: "2021-10-06",
   minutes: 3,

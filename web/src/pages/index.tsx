@@ -11,8 +11,12 @@ const metadata = Object.values(posts)
 
 const Root = styled("div", {
   width: "100%",
-  maxWidth: "670px",
-  margin: "$8 auto",
+  maxWidth: "740px",
+  margin: "$6 auto",
+  padding: "0 $6",
+  "@sm": {
+    margin: "$8 auto",
+  },
 });
 
 const List = styled("div", {
@@ -50,6 +54,10 @@ const HeaderPicture = styled("img", {
   borderRadius: "1000px",
   width: "150px",
   height: "auto",
+  display: "none",
+  "@sm": {
+    display: "block",
+  },
 });
 
 const HeaderText = styled("div", {
@@ -85,19 +93,11 @@ export default function () {
       <Meta property="og:url" content="https://thdxr.com" />
       <Meta property="og:title" content="Dax Raad" />
       <Meta property="og:description" content={META_DESCRIPTION} />
-      <Meta
-        property="og:image"
-        content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-      />
 
       <Meta property="twitter:card" content="summary_large_image" />
       <Meta property="twitter:url" content="https://thdxr.com" />
       <Meta property="twitter:title" content="Dax Raad" />
       <Meta property="twitter:description" content={META_DESCRIPTION} />
-      <Meta
-        property="twitter:image"
-        content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-      />
 
       <Header>
         <HeaderText>

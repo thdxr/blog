@@ -138,7 +138,10 @@ const Root = styled("div", {
 const Content = styled("div", {
   width: "100%",
   maxWidth: "750px",
-  padding: "$8 0",
+  padding: "$6 0",
+  "@sm": {
+    padding: "$8 0",
+  },
 });
 
 const Left = styled("div", {
@@ -184,9 +187,23 @@ const DetailsSpacer = styled("div", {
 });
 
 export function Details(props: { metadata: MetadataType }) {
+  const d = new Date(props.metadata.date);
+  let ye = new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(d);
+  let mo = new Intl.DateTimeFormat("en", {
+    month: "short",
+    timeZone: "UTC",
+  }).format(d);
+  let da = new Intl.DateTimeFormat("en", {
+    day: "2-digit",
+    timeZone: "UTC",
+  }).format(d);
+  const date = `${mo} ${da}, ${ye}`;
   return (
     <DetailsRoot>
-      <DetailsItem>{props.metadata.date}</DetailsItem>
+      <DetailsItem>{date}</DetailsItem>
       <DetailsSpacer />
       <DetailsItem>{props.metadata.minutes} min read</DetailsItem>
     </DetailsRoot>

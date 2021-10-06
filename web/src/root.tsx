@@ -44,6 +44,11 @@ export default function Root(props: any) {
           <Assets>
             <style id="stitches">{getCssText()}</style>
           </Assets>
+          <script
+            defer
+            data-domain="thdxr.com"
+            src="https://plausible.io/js/plausible.js"
+          ></script>
         </head>
         <Body>
           <Outlet />
