@@ -1,7 +1,6 @@
 import * as sst from "@serverless-stack/resources";
-import * as lambda from "@aws-cdk/aws-lambda";
-import * as iam from "@aws-cdk/aws-iam";
 import * as cf from "@aws-cdk/aws-cloudfront";
+import { StaticSiteErrorOptions } from "@serverless-stack/resources";
 
 export class Stack extends sst.Stack {
   constructor(scope: sst.App) {
@@ -23,6 +22,7 @@ export class Stack extends sst.Stack {
       path: "./web",
       buildCommand: "yarn build",
       buildOutput: "./dist",
+      errorPage: StaticSiteErrorOptions.REDIRECT_TO_INDEX_PAGE,
       cfDistribution: {
         defaultBehavior: {
           functionAssociations: [
