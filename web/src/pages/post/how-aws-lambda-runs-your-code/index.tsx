@@ -39,17 +39,18 @@ const Visualization: Component = (props) => {
 
 export const Metadata: MetadataType = {
   title: "How AWS Lambda Runs Your Code",
-  description: "A breakdown of the AWS Lambda Runtime API",
-  slug: "how-aws-runs-your-code",
+  description:
+    "A breakdown of the surprisingly simple AWS Lambda Runtime API and bending it to your will",
+  slug: "how-aws-lambda-runs-your-code",
   date: "2021-10-06",
-  minutes: 4,
+  minutes: 3,
 };
 
 export default function () {
   return (
     <Post metadata={Metadata}>
       <Paragraph>
-        For the past few weeks I've been working on a update to{" "}
+        For the past few weeks, I've been working on an update to{" "}
         <Link href="https://serverless-stack.com/" target="_blank">
           Serverless Stack (SST)
         </Link>{" "}
@@ -151,23 +152,81 @@ export default function () {
 
       <H2>How we fake it</H2>
       <Paragraph>
-        In SST your functions are executing locally so they need a local Lambda
-        Runtime API available. We implemented a fake version of it that connects
-        to your AWS account over websocket.
-      </Paragraph>
-      <Paragraph>
-        Since SST supports multiple languages you might think it was a lot of
-        work to recreate the API client for every language.
-      </Paragraph>
-
-      <H3>Lambda Runtime Clients</H3>
-      <Paragraph>
-        Since SST supports multiple languages you might think it was a lot of
-        work to recreate the API client for every language.
+        In SST, your functions are executing locally so they need a local Lambda
+        Runtime API available. We provide a fake version that emulates the same
+        three endpoints and connects to your AWS account over websocket.
       </Paragraph>
       <Paragraph>
         When a request to invoke a function comes in, it is forwarded to the
-        websocket and through the /runtime/invocation/next endpoint.
+        websocket and through the{" "}
+        <Highlight>/runtime/invocation/next</Highlight> endpoint to your local
+        code. The response is then sent back to AWS.
+      </Paragraph>
+
+      <Paragraph>
+        This is how we mirror the production environment without requiring your
+        code to be uploaded on every change. Your code cannot tell it isn't
+        running in AWS because it's able to find the Lambda Runtime API it's
+        looking for.
+      </Paragraph>
+
+      <H2>Lambda Runtime Clients</H2>
+      <Paragraph>
+        Since SST supports multiple languages you might think we had to recreate
+        the API client for every language. However, AWS actually open sources
+        these clients for the various languages they support natively. Some
+        examples:{" "}
+        <Link
+          target="_blank"
+          href="https://github.com/aws/aws-lambda-nodejs-runtime-interface-client"
+        >
+          NodeJS
+        </Link>
+        ,{" "}
+        <Link
+          target="_blank"
+          href="https://github.com/aws/aws-lambda-go/tree/main/lambda"
+        >
+          Go
+        </Link>
+        , and{" "}
+        <Link
+          target="_blank"
+          href="https://github.com/aws/aws-lambda-dotnet/blob/master/Libraries/src/Amazon.Lambda.RuntimeSupport/Client/RuntimeApiClient.cs"
+        >
+          .NET
+        </Link>
+      </Paragraph>
+
+      <Paragraph>
+        These clients even follow a standard of accepting an{" "}
+        <Highlight color="code">AWS_LAMBDA_RUNTIME_API</Highlight> environment
+        variable so we can point them to the local instance. It's like AWS
+        wanted us to do this.
+      </Paragraph>
+
+      <Paragraph>
+        If you want to add support for a new language, all it takes is writing
+        an API client that can talk to those 3 endpoints and run your code. You
+        can even write it in bash if you want{" "}
+        <Link
+          target="_blank"
+          href="https://deno.land/x/lambda@1.14.1/bootstrap"
+        >
+          which is what this Deno implementation does
+        </Link>
+      </Paragraph>
+
+      <H2>Well that's unimpressive</H2>
+      <Paragraph>
+        Hopefully understanding how all this works and how simple it is doesn't
+        leave you feeling too unimpressed with the work we're doing on SST.
+      </Paragraph>
+      <Paragraph>
+        We intentionally make sure SST adds as little as possible when running
+        things locally to ensure everything keeps behaving the same as
+        production. Cloud-first development is the way to go and this is a small
+        exception to make that experience smoother.
       </Paragraph>
     </Post>
   );

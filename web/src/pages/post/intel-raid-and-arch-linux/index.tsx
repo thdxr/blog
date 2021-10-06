@@ -13,7 +13,7 @@ export const Metadata: MetadataType = {
   description: "Getting FakeRaid working in an Arch Linux installation",
   slug: "intel-raid-and-arch-linux",
   date: "2017-09-17",
-  minutes: 4,
+  minutes: 2,
 };
 
 export default function () {

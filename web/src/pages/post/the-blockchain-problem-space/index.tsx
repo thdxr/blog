@@ -16,7 +16,7 @@ export const Metadata: MetadataType = {
   title: "The Blockchain Problem Space",
   description: "An engineering breakdown on when to choose blockchain",
   slug: "the-blockchain-problem-space",
-  minutes: 10,
+  minutes: 5,
   date: "2017-08-13",
 };
 

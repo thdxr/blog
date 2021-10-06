@@ -199,7 +199,9 @@ export function Post(
   }>
 ) {
   const url = `https://thdxr.com/${props.metadata.slug}`;
-  const img = `https://banners.beyondco.de/${props.metadata.title}.png?theme=dark&packageManager=&packageName=&pattern=architect&style=style_1&description=Dax+Raad&md=0&showWatermark=0&fontSize=100px&images=lightning-bolt`;
+  const img = `https://banners.beyondco.de/${encodeURIComponent(
+    props.metadata.title
+  )}.png?theme=dark&packageManager=&packageName=&pattern=architect&style=style_1&description=Dax+Raad&md=0&showWatermark=0&fontSize=100px&images=lightning-bolt`;
   return (
     <Root>
       <Meta name="title" content={props.metadata.title} />

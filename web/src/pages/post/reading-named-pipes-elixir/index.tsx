@@ -19,7 +19,7 @@ export const Metadata: MetadataType = {
   description:
     "How to go about reading data from special files like named pipes",
   slug: "reading-named-pipes-elixir",
-  minutes: 10,
+  minutes: 4,
   date: "2017-08-14",
 };
 
