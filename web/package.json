@@ -1,0 +1,30 @@
+{
+  "name": "blog-web",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start",
+    "sst:start": "sst start",
+    "sst:deploy": "sst deploy"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@serverless-stack/cli": "^0.45.0",
+    "@serverless-stack/resources": "^0.45.0",
+    "solid-app-router": "^0.1.7",
+    "solid-js": "^1.1.5",
+    "solid-meta": "^0.27.2",
+    "solid-start": "next",
+    "solid-start-node": "next",
+    "solid-start-static": "next",
+    "vite": "^2.5.10"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^0.1.7",
+    "@stitches/core": "^1.2.1"
+  }
+}

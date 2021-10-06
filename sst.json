@@ -1,0 +1,6 @@
+{
+  "name": "blog",
+  "region": "us-east-2",
+  "main": "stacks/index.ts",
+  "lint": false
+}
