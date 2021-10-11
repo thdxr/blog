@@ -27,7 +27,9 @@ const VizRoot = styled("div", {
   justifyContent: "center",
 });
 
-const VizImage = styled("img", {});
+const VizImage = styled("img", {
+  alignSelf: "flex-start",
+});
 
 const Visualization: Component = (props) => {
   return (
